@@ -1,12 +1,16 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { viewFadeUp } from "@/lib/motion";
-import { statistics } from "@/data/site";
+import { getStatistics } from "@/lib/content";
 import { images } from "@/data/images";
 import { AnimatedCounter } from "@/components/shared/animated-counter";
 
 export function StatsSection() {
+  const t = useTranslations("stats");
+  const statistics = getStatistics((key) => t(key));
+
   return (
     <section className="relative overflow-hidden bg-forest py-20 text-white dark:bg-forest/90">
       <div
@@ -23,11 +27,7 @@ export function StatsSection() {
               className="text-center"
             >
               <div className="[&_span]:text-gold">
-                <AnimatedCounter
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  prefix={stat.prefix}
-                />
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
               </div>
               <p className="mt-2 text-sm font-medium text-white/80 sm:text-base">
                 {stat.label}

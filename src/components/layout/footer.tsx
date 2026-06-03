@@ -1,11 +1,17 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { Globe, Leaf, Mail, MapPin, Phone, Share2, Video } from "lucide-react";
-import { navLinks, siteConfig } from "@/data/site";
+import { Link } from "@/i18n/navigation";
+import { siteConfig } from "@/data/site";
+import { getNavLinks } from "@/lib/content";
 import { Newsletter } from "@/components/shared/newsletter";
 import { Separator } from "@/components/ui/separator";
 
-export function Footer() {
+export async function Footer() {
+  const t = await getTranslations();
+  const tNav = await getTranslations("nav");
+  const tFooter = await getTranslations("footer");
   const year = new Date().getFullYear();
+  const navLinks = getNavLinks((key) => tNav(key));
 
   return (
     <footer className="border-t border-border bg-forest text-white dark:bg-card dark:text-foreground">
@@ -17,14 +23,14 @@ export function Footer() {
                 <Leaf className="size-5" />
               </div>
               <div>
-                <p className="font-heading text-lg font-bold">{siteConfig.name}</p>
+                <p className="font-heading text-lg font-bold">{t("site.name")}</p>
                 <p className="text-sm text-white/70 dark:text-muted-foreground">
-                  {siteConfig.tagline}
+                  {t("site.tagline")}
                 </p>
               </div>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/75 dark:text-muted-foreground">
-              {siteConfig.description}
+              {t("site.description")}
             </p>
             <div className="mt-6 flex gap-3">
               {siteConfig.social.facebook && (
@@ -65,7 +71,7 @@ export function Footer() {
 
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-gold">
-              Quick Links
+              {tFooter("quickLinks")}
             </h3>
             <ul className="mt-4 space-y-2">
               {navLinks.map((link) => (
@@ -83,12 +89,12 @@ export function Footer() {
 
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-gold">
-              Contact
+              {tFooter("contact")}
             </h3>
             <ul className="mt-4 space-y-3 text-sm text-white/75 dark:text-muted-foreground">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
-                {siteConfig.address}
+                {t("site.address")}
               </li>
               <li>
                 <a
@@ -113,10 +119,10 @@ export function Footer() {
 
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-wider text-gold">
-              Newsletter
+              {tFooter("newsletter")}
             </h3>
             <p className="mt-4 text-sm text-white/75 dark:text-muted-foreground">
-              Get farming tips, new stock alerts, and farm updates.
+              {tFooter("newsletterDesc")}
             </p>
             <Newsletter variant="footer" />
           </div>
@@ -125,8 +131,10 @@ export function Footer() {
         <Separator className="my-8 bg-white/20 dark:bg-border" />
 
         <div className="flex flex-col items-center justify-between gap-4 text-sm text-white/60 sm:flex-row dark:text-muted-foreground">
-          <p>© {year} {siteConfig.name}. All rights reserved.</p>
-          <p>Premium Black Bengal Goat Farming · West Bengal, India</p>
+          <p>
+            © {year} {t("site.name")}. {t("site.copyright")}
+          </p>
+          <p>{t("site.footerLine")}</p>
         </div>
       </div>
     </footer>

@@ -1,40 +1,48 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { blogPosts, getBlogPostBySlug } from "@/data/blog";
+import { Link } from "@/i18n/navigation";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { JsonLd } from "@/components/seo/json-ld";
 import { formatPublishedDate } from "@/lib/format";
 import { createMetadata } from "@/lib/seo";
 import { getArticleSchema } from "@/lib/schema";
+import { routing } from "@/i18n/routing";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-interface Props {
-  params: Promise<{ slug: string }>;
-}
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
-export async function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) =>
+    blogPosts.map((post) => ({ locale, slug: post.slug }))
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
-  if (!post) return { title: "Article Not Found" };
+  const { locale, slug } = await params;
+  const post = getBlogPostBySlug(slug, locale);
+  if (!post) {
+    const t = await getTranslations({ locale, namespace: "common" });
+    return { title: t("articleNotFound") };
+  }
   return createMetadata({
     title: post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}`,
     image: post.image,
+    locale,
   });
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("common");
+  const post = getBlogPostBySlug(slug, locale);
   if (!post) notFound();
 
   const articleSchema = getArticleSchema(post);
@@ -63,7 +71,7 @@ export default async function BlogPostPage({ params }: Props) {
             className="mb-6 -ml-2"
           >
             <ArrowLeft className="size-4" />
-            Back to Blog
+            {t("backToBlog")}
           </Button>
           <Badge className="mb-4 bg-gold text-forest">{post.category}</Badge>
           <h1 className="font-heading text-3xl font-bold sm:text-4xl lg:text-5xl">
@@ -78,7 +86,7 @@ export default async function BlogPostPage({ params }: Props) {
               <Clock className="size-4" />
               {post.readTime}
             </span>
-            <span>By {post.author}</span>
+            <span>{t("byAuthor", { author: post.author })}</span>
           </div>
           <div className="prose prose-lg mt-10 max-w-3xl dark:prose-invert">
             {paragraphs.map((para, i) => {

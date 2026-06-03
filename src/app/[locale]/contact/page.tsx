@@ -1,38 +1,45 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Globe, Mail, MapPin, MessageCircle, Phone, Share2, Video } from "lucide-react";
 import { PageHero } from "@/components/shared/page-hero";
 import { ContactForm } from "@/components/shared/contact-form";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { siteConfig } from "@/data/site";
 import { images } from "@/data/images";
-import { createMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/metadata";
+import { routing } from "@/i18n/routing";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export const metadata: Metadata = createMetadata({
-  title: "Contact Us",
-  description:
-    "Get in touch with Arshu Agro Farms — phone, email, WhatsApp, farm visit requests, and location map.",
-  path: "/contact",
-});
+type Props = { params: Promise<{ locale: string }> };
 
-export default function ContactPage() {
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "contact", "/contact");
+}
+
+export default async function ContactPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("pages.contact");
+  const tSite = await getTranslations("site");
   const whatsappUrl = `https://wa.me/${siteConfig.whatsapp}`;
 
   return (
     <PageWrapper>
       <PageHero
-        title="Contact Us"
-        description="We'd love to hear from you. Reach out for goat inquiries, farm visits, or partnerships."
+        title={t("heroTitle")}
+        description={t("heroDesc")}
         image={images.goatFarm}
       />
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <h2 className="font-heading text-2xl font-bold">Send a Message</h2>
-              <p className="mt-2 text-muted-foreground">
-                Fill out the form and we&apos;ll respond within 24 hours.
-              </p>
+              <h2 className="font-heading text-2xl font-bold">{t("formTitle")}</h2>
               <div className="mt-8">
                 <ContactForm />
               </div>
@@ -41,7 +48,7 @@ export default function ContactPage() {
             <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle className="font-heading">Contact Information</CardTitle>
+                  <CardTitle className="font-heading">{t("infoTitle")}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <a
@@ -65,18 +72,18 @@ export default function ContactPage() {
                     className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-[#25D366]"
                   >
                     <MessageCircle className="size-5 text-[#25D366]" />
-                    WhatsApp Chat
+                    {t("whatsappTitle")}
                   </a>
                   <div className="flex items-start gap-3 text-muted-foreground">
                     <MapPin className="mt-0.5 size-5 shrink-0 text-forest dark:text-gold" />
-                    {siteConfig.address}
+                    {tSite("address")}
                   </div>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="font-heading">Follow Us</CardTitle>
+                  <CardTitle className="font-heading">{t("followTitle")}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex gap-3">
                   {siteConfig.social.facebook && (
@@ -124,7 +131,7 @@ export default function ContactPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Arshu Agro Farms Location"
+                  title={t("mapTitle")}
                 />
               </div>
             </div>

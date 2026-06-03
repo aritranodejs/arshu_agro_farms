@@ -1,27 +1,41 @@
 import type { Metadata } from "next";
-import { siteConfig } from "@/data/site";
+import { getTranslations } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://arshuagrofarms.com";
 
-export function createMetadata({
+function localePath(locale: string, path: string) {
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  if (locale === routing.defaultLocale) return normalized || "/";
+  return `/${locale}${normalized === "/" ? "" : normalized}`;
+}
+
+export async function createMetadata({
   title,
   description,
   path = "",
   image,
   noIndex = false,
+  locale = routing.defaultLocale,
 }: {
   title?: string;
   description?: string;
   path?: string;
   image?: string;
   noIndex?: boolean;
-}): Metadata {
+  locale?: string;
+}): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "site" });
+  const siteName = t("name");
+  const tagline = t("tagline");
+  const defaultDescription = t("description");
+
   const pageTitle = title
-    ? `${title} | ${siteConfig.name}`
-    : `${siteConfig.name} | ${siteConfig.tagline}`;
-  const pageDescription = description ?? siteConfig.description;
-  const url = `${baseUrl}${path}`;
+    ? `${title} | ${siteName}`
+    : `${siteName} | ${tagline}`;
+  const pageDescription = description ?? defaultDescription;
+  const url = `${baseUrl}${localePath(locale, path)}`;
   const ogImage =
     image ?? `${baseUrl}/og-image.jpg`;
 
@@ -34,10 +48,11 @@ export function createMetadata({
       title: pageTitle,
       description: pageDescription,
       url,
-      siteName: siteConfig.name,
-      locale: "en_IN",
+      siteName,
+      locale: locale === "bn" ? "bn_IN" : "en_IN",
+      alternateLocale: locale === "bn" ? ["en_IN"] : ["bn_IN"],
       type: "website",
-      images: [{ url: ogImage, width: 1200, height: 630, alt: siteConfig.name }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: siteName }],
     },
     twitter: {
       card: "summary_large_image",

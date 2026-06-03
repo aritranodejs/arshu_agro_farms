@@ -1,44 +1,40 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Leaf, Target, Eye, Sprout } from "lucide-react";
 import { PageHero } from "@/components/shared/page-hero";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { PageWrapper } from "@/components/layout/page-wrapper";
-import { coreValues } from "@/data/site";
 import { images } from "@/data/images";
-import { createMetadata } from "@/lib/seo";
+import { pageMetadata } from "@/lib/metadata";
+import { getCoreValues, getStringList } from "@/lib/content";
+import { routing } from "@/i18n/routing";
 import { Card, CardContent } from "@/components/ui/card";
 
-export const metadata: Metadata = createMetadata({
-  title: "About Us",
-  description:
-    "Learn about Arshu Agro Farms — our story, mission, sustainable Black Bengal goat farming, and vision for the future.",
-  path: "/about",
-});
+type Props = { params: Promise<{ locale: string }> };
 
-const practices = [
-  "Rotational grazing to preserve pasture health",
-  "Organic and locally sourced feed supplementation",
-  "Rainwater harvesting and efficient water management",
-  "Veterinary-led preventive healthcare programs",
-  "Humane handling and stress-free environments",
-  "Waste recycling for natural fertilizer production",
-];
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
-const futurePlans = [
-  "Expand herd capacity with premium breeding lines",
-  "Launch organic goat milk and cheese products",
-  "Develop farm tourism and educational workshops",
-  "Integrate digital inventory and health tracking (admin dashboard)",
-  "Partner with local cooperatives and export markets",
-];
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "about", "/about");
+}
 
-export default function AboutPage() {
+export default async function AboutPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("pages.about");
+  const tRoot = await getTranslations();
+  const coreValues = getCoreValues((key) => tRoot(key));
+  const practices = getStringList((key) => tRoot(key), "practices", 6);
+  const futurePlans = getStringList((key) => tRoot(key), "futurePlans", 5);
   return (
     <PageWrapper>
       <PageHero
-        title="About Arshu Agro Farms"
-        description="Building trust through quality livestock and sustainable farming since day one."
+        title={t("heroTitle")}
+        description={t("heroDesc")}
         image={images.pageBg}
       />
 
@@ -47,37 +43,21 @@ export default function AboutPage() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
               <SectionHeading
-                label="Our Story"
-                title="Rooted in Passion, Growing with Purpose"
+                label={t("storyLabel")}
+                title={t("storyTitle")}
                 align="left"
                 className="mb-6"
               />
               <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  Arshu Agro Farms began with a simple vision: to raise the finest
-                  Black Bengal goats while honoring the land and animals that sustain
-                  us. What started as a small family operation in West Bengal has
-                  grown into a trusted name among farmers, breeders, and agricultural
-                  entrepreneurs across the region.
-                </p>
-                <p>
-                  Our founder recognized the growing demand for quality livestock and
-                  the gap between commercial farming and ethical practices. Today, we
-                  bridge that gap — delivering healthy goats with complete health
-                  documentation, expert guidance, and a commitment to sustainable
-                  agriculture.
-                </p>
-                <p>
-                  Every goat on our farm is treated with care, tracked with meticulous
-                  records, and raised in conditions we&apos;d be proud to show anyone.
-                  That transparency is the foundation of everything we do.
-                </p>
+                <p>{t("storyP1")}</p>
+                <p>{t("storyP2")}</p>
+                <p>{t("storyP3")}</p>
               </div>
             </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
                 src={images.goatFarm}
-                alt="Arshu Agro Farms herd"
+                alt={t("farmImageAlt")}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -93,22 +73,18 @@ export default function AboutPage() {
             <Card className="border-forest/20">
               <CardContent className="pt-8">
                 <Target className="mb-4 size-10 text-forest dark:text-gold" />
-                <h3 className="font-heading text-2xl font-bold">Our Mission</h3>
+                <h3 className="font-heading text-2xl font-bold">{t("missionTitle")}</h3>
                 <p className="mt-4 text-muted-foreground leading-relaxed">
-                  To provide premium Black Bengal goats and breeding stock through
-                  ethical, sustainable farming — empowering customers with healthy
-                  livestock, expert knowledge, and lasting partnerships built on trust.
+                  {t("missionDesc")}
                 </p>
               </CardContent>
             </Card>
             <Card className="border-gold/30">
               <CardContent className="pt-8">
                 <Eye className="mb-4 size-10 text-forest dark:text-gold" />
-                <h3 className="font-heading text-2xl font-bold">Our Vision</h3>
+                <h3 className="font-heading text-2xl font-bold">{t("visionTitle")}</h3>
                 <p className="mt-4 text-muted-foreground leading-relaxed">
-                  To become West Bengal&apos;s most trusted agricultural brand — expanding
-                  into diverse farm products while maintaining the highest standards of
-                  animal welfare, environmental stewardship, and customer service.
+                  {t("visionDesc")}
                 </p>
               </CardContent>
             </Card>
@@ -119,9 +95,8 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <SectionHeading
-            label="Values"
-            title="Our Core Values"
-            description="The principles that guide every decision on our farm."
+            label={t("valuesLabel")}
+            title={t("valuesTitle")}
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {coreValues.map((value) => (
@@ -145,12 +120,10 @@ export default function AboutPage() {
             <div>
               <Sprout className="mb-4 size-10 text-gold" />
               <h2 className="font-heading text-3xl font-bold sm:text-4xl">
-                Sustainable Farming Practices
+                {t("sustainTitle")}
               </h2>
               <p className="mt-4 text-white/85 leading-relaxed">
-                Sustainability isn&apos;t a buzzword for us — it&apos;s how we farm every
-                single day. Our practices protect the environment while producing
-                healthier, more resilient livestock.
+                {t("sustainDesc")}
               </p>
             </div>
             <ul className="grid gap-3 sm:grid-cols-2">
@@ -171,9 +144,9 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <SectionHeading
-            label="Growth"
-            title="Future Growth Plans"
-            description="Expanding our impact while staying true to our roots."
+            label={t("futureLabel")}
+            title={t("futureTitle")}
+            description={t("futureDesc")}
           />
           <ul className="mx-auto max-w-2xl space-y-4">
             {futurePlans.map((plan, i) => (

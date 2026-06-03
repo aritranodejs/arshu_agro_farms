@@ -28,6 +28,17 @@ npm run build
 npm start
 ```
 
+## Languages
+
+The site supports **English** (`en`) and **Bengali** (`bn`):
+
+| Locale | URL example |
+|--------|-------------|
+| English (default) | `/`, `/goats`, `/contact` |
+| Bengali | `/bn`, `/bn/goats`, `/bn/contact` |
+
+Use the **English / বাংলা** toggle in the header to switch languages. Translations live in `messages/en.json` and `messages/bn.json`.
+
 ## Environment Variables
 
 Create `.env.local`:

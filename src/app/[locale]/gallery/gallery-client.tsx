@@ -1,19 +1,23 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { GalleryGrid } from "@/components/shared/gallery-grid";
-import { galleryImages } from "@/data/gallery";
+import { getGalleryImages } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 const categories = [
-  { id: "all", label: "All" },
-  { id: "goats", label: "Goats" },
-  { id: "facilities", label: "Facilities" },
-  { id: "daily-life", label: "Daily Life" },
+  { id: "all", labelKey: "filterAll" as const },
+  { id: "goats", labelKey: "filterGoats" as const },
+  { id: "facilities", labelKey: "filterFacilities" as const },
+  { id: "daily-life", labelKey: "filterDaily" as const },
 ] as const;
 
 export function GalleryClient() {
+  const t = useTranslations("pages.gallery");
+  const tGallery = useTranslations();
   const [active, setActive] = useState<string>("all");
+  const galleryImages = getGalleryImages((key) => tGallery(key));
 
   const filtered =
     active === "all"
@@ -35,7 +39,7 @@ export function GalleryClient() {
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
             )}
           >
-            {cat.label}
+            {t(cat.labelKey)}
           </button>
         ))}
       </div>

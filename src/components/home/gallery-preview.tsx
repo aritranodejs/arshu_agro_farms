@@ -1,23 +1,26 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { viewScale } from "@/lib/motion";
-import { galleryImages } from "@/data/gallery";
+import { getGalleryImages } from "@/lib/content";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Button } from "@/components/ui/button";
 
-const previewImages = galleryImages.slice(0, 6);
-
 export function GalleryPreview() {
+  const t = useTranslations("home");
+  const tCommon = useTranslations("common");
+  const tRoot = useTranslations();
+  const previewImages = getGalleryImages((key) => tRoot(key)).slice(0, 6);
+
   return (
     <section className="bg-muted/30 py-20 sm:py-28">
       <div className="container mx-auto px-4">
         <SectionHeading
-          label="Gallery"
-          title="Life at Our Farm"
-          description="Explore our facilities, herd, and daily farming activities."
+          label={t("galleryLabel")}
+          title={t("galleryTitle")}
         />
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
           {previewImages.map((image, index) => (
@@ -46,7 +49,7 @@ export function GalleryPreview() {
             nativeButton={false}
             className="bg-forest hover:bg-forest-light dark:bg-gold dark:text-forest"
           >
-            View Full Gallery
+            {tCommon("viewFullGallery")}
           </Button>
         </div>
       </div>

@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { viewFadeUp } from "@/lib/motion";
 import { Scale, Calendar, Syringe, ShieldCheck } from "lucide-react";
 import type { Goat } from "@/types";
+import { Link } from "@/i18n/navigation";
+import { siteConfig } from "@/data/site";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +16,6 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { siteConfig } from "@/data/site";
 
 interface GoatCardProps {
   goat: Goat;
@@ -22,8 +23,13 @@ interface GoatCardProps {
 }
 
 export function GoatCard({ goat, index = 0 }: GoatCardProps) {
+  const t = useTranslations("common");
   const whatsappUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
-    `Hello! I'm interested in ${goat.label} (${goat.breed}, ${goat.age}) from Arshu Agro Farms.`
+    t("whatsappInquiry", {
+      label: goat.label,
+      breed: goat.breed,
+      age: goat.age,
+    })
   )}`;
 
   return (
@@ -36,7 +42,7 @@ export function GoatCard({ goat, index = 0 }: GoatCardProps) {
         <div className="relative aspect-[4/3] overflow-hidden">
           <Image
             src={goat.image}
-            alt={`${goat.label} — ${goat.breed} at Arshu Agro Farms`}
+            alt={t("goatImageAlt", { label: goat.label, breed: goat.breed })}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -87,7 +93,7 @@ export function GoatCard({ goat, index = 0 }: GoatCardProps) {
             nativeButton={false}
             className="flex-1 bg-forest hover:bg-forest-light dark:bg-gold dark:text-forest"
           >
-            Inquire Now
+            {t("inquireNow")}
           </Button>
           <Button
             render={<Link href="/contact" />}
@@ -95,7 +101,7 @@ export function GoatCard({ goat, index = 0 }: GoatCardProps) {
             variant="outline"
             className="flex-1"
           >
-            Contact
+            {t("contact")}
           </Button>
         </CardFooter>
       </Card>

@@ -1,20 +1,29 @@
-import Link from "next/link";
-import { featuredGoats } from "@/data/goats";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
+import { getGoats } from "@/lib/content";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { GoatCard } from "@/components/shared/goat-card";
 import { Button } from "@/components/ui/button";
 
-export function FeaturedGoats() {
+export async function FeaturedGoats() {
+  const t = await getTranslations("home");
+  const tCommon = await getTranslations("common");
+  const tRoot = await getTranslations();
+  const goats = getGoats(
+    (key) => tRoot(key),
+    (key) => tRoot(key)
+  ).filter((g) => g.featured);
+
   return (
     <section className="bg-muted/30 py-20 sm:py-28">
       <div className="container mx-auto px-4">
         <SectionHeading
-          label="Our Livestock"
-          title="Featured Stock"
-          description="Black Bengal goats from our Mayapur farm — raised with documented health care and ethical practices. Pricing discussed individually."
+          label={t("livestockLabel")}
+          title={t("livestockTitle")}
+          description={t("livestockDesc")}
         />
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredGoats.map((goat, index) => (
+          {goats.map((goat, index) => (
             <GoatCard key={goat.id} goat={goat} index={index} />
           ))}
         </div>
@@ -25,7 +34,7 @@ export function FeaturedGoats() {
             nativeButton={false}
             className="bg-forest hover:bg-forest-light dark:bg-gold dark:text-forest"
           >
-            View Full Inventory
+            {tCommon("viewFullInventory")}
           </Button>
         </div>
       </div>

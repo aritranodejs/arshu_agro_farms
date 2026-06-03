@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,18 +18,30 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const schema = z.object({
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Valid email required"),
-  phone: z.string().min(10, "Valid phone required"),
-  subject: z.string().min(1, "Please select a subject"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
-type FormData = z.infer<typeof schema>;
+type FormData = {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+};
 
 export function ContactForm() {
+  const t = useTranslations("form");
   const [submitted, setSubmitted] = useState(false);
+
+  const schema = useMemo(
+    () =>
+      z.object({
+        name: z.string().min(2, t("errors.name")),
+        email: z.string().email(t("errors.email")),
+        phone: z.string().min(10, t("errors.phone")),
+        subject: z.string().min(1, t("errors.subject")),
+        message: z.string().min(10, t("errors.message")),
+      }),
+    [t]
+  );
+
   const {
     register,
     handleSubmit,
@@ -38,7 +51,6 @@ export function ContactForm() {
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data: FormData) => {
-    // Ready for admin/inquiries API integration
     console.log("Inquiry submitted:", data);
     await new Promise((r) => setTimeout(r, 1000));
     setSubmitted(true);
@@ -50,11 +62,9 @@ export function ContactForm() {
     return (
       <div className="rounded-xl border border-forest/20 bg-forest/5 p-8 text-center dark:bg-forest/10">
         <h3 className="font-heading text-xl font-bold text-forest dark:text-gold">
-          Thank You!
+          {t("thankYou")}
         </h3>
-        <p className="mt-2 text-muted-foreground">
-          We&apos;ve received your inquiry and will respond within 24 hours.
-        </p>
+        <p className="mt-2 text-muted-foreground">{t("thankYouDesc")}</p>
       </div>
     );
   }
@@ -63,26 +73,26 @@ export function ContactForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="name">Full Name</Label>
-          <Input id="name" placeholder="Your name" {...register("name")} />
+          <Label htmlFor="name">{t("name")}</Label>
+          <Input id="name" placeholder={t("namePlaceholder")} {...register("name")} />
           {errors.name && (
             <p className="text-sm text-destructive">{errors.name.message}</p>
           )}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="phone">Phone Number</Label>
-          <Input id="phone" placeholder="+91 ..." {...register("phone")} />
+          <Label htmlFor="phone">{t("phone")}</Label>
+          <Input id="phone" placeholder={t("phonePlaceholder")} {...register("phone")} />
           {errors.phone && (
             <p className="text-sm text-destructive">{errors.phone.message}</p>
           )}
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="email">Email Address</Label>
+        <Label htmlFor="email">{t("email")}</Label>
         <Input
           id="email"
           type="email"
-          placeholder="you@email.com"
+          placeholder={t("emailPlaceholder")}
           {...register("email")}
         />
         {errors.email && (
@@ -90,17 +100,17 @@ export function ContactForm() {
         )}
       </div>
       <div className="space-y-2">
-        <Label>Subject</Label>
+        <Label>{t("subject")}</Label>
         <Select onValueChange={(v) => setValue("subject", String(v ?? ""))}>
           <SelectTrigger>
-            <SelectValue placeholder="Select inquiry type" />
+            <SelectValue placeholder={t("subjectPlaceholder")} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="purchase">Goat Purchase</SelectItem>
-            <SelectItem value="breeding">Breeding Stock</SelectItem>
-            <SelectItem value="visit">Farm Visit</SelectItem>
-            <SelectItem value="bulk">Bulk Order</SelectItem>
-            <SelectItem value="other">Other</SelectItem>
+            <SelectItem value="purchase">{t("subjects.purchase")}</SelectItem>
+            <SelectItem value="breeding">{t("subjects.breeding")}</SelectItem>
+            <SelectItem value="visit">{t("subjects.visit")}</SelectItem>
+            <SelectItem value="bulk">{t("subjects.bulk")}</SelectItem>
+            <SelectItem value="other">{t("subjects.other")}</SelectItem>
           </SelectContent>
         </Select>
         {errors.subject && (
@@ -108,11 +118,11 @@ export function ContactForm() {
         )}
       </div>
       <div className="space-y-2">
-        <Label htmlFor="message">Message</Label>
+        <Label htmlFor="message">{t("message")}</Label>
         <Textarea
           id="message"
           rows={5}
-          placeholder="Tell us about your requirements..."
+          placeholder={t("messagePlaceholder")}
           {...register("message")}
         />
         {errors.message && (
@@ -129,7 +139,7 @@ export function ContactForm() {
         ) : (
           <>
             <Send className="size-4" />
-            Send Message
+            {t("send")}
           </>
         )}
       </Button>

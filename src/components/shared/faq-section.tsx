@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
   Accordion,
   AccordionContent,
@@ -7,16 +8,20 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { faqItems } from "@/data/site";
+import { getFaqItems } from "@/lib/content";
 
 export function FAQSection() {
+  const t = useTranslations("home");
+  const tFaq = useTranslations();
+  const faqItems = getFaqItems((key) => tFaq(key));
+
   return (
     <section className="py-20 sm:py-28">
       <div className="container mx-auto px-4">
         <SectionHeading
-          label="FAQ"
-          title="Frequently Asked Questions"
-          description="Everything you need to know about our goats, breeding program, and farm visits."
+          label={t("faqLabel")}
+          title={t("faqTitle")}
+          description={t("faqDesc")}
         />
         <Accordion className="mx-auto max-w-3xl">
           {faqItems.map((item) => (

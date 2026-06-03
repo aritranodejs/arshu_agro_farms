@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,11 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-const schema = z.object({
-  email: z.string().email("Please enter a valid email"),
-});
-
-type FormData = z.infer<typeof schema>;
+type FormData = { email: string };
 
 interface NewsletterProps {
   variant?: "default" | "footer";
@@ -21,7 +18,12 @@ interface NewsletterProps {
 }
 
 export function Newsletter({ variant = "default", className }: NewsletterProps) {
+  const t = useTranslations("common");
   const [submitted, setSubmitted] = useState(false);
+  const schema = useMemo(
+    () => z.object({ email: z.string().email(t("emailInvalid")) }),
+    [t]
+  );
   const {
     register,
     handleSubmit,
@@ -46,7 +48,7 @@ export function Newsletter({ variant = "default", className }: NewsletterProps) 
       <div className="flex flex-col gap-2 sm:flex-row">
         <Input
           type="email"
-          placeholder="Your email address"
+          placeholder={t("emailPlaceholder")}
           {...register("email")}
           className={cn(
             isFooter && "border-white/20 bg-white/10 text-white placeholder:text-white/50"
@@ -65,9 +67,9 @@ export function Newsletter({ variant = "default", className }: NewsletterProps) 
           {isSubmitting ? (
             <Loader2 className="size-4 animate-spin" />
           ) : submitted ? (
-            "Subscribed!"
+            t("subscribed")
           ) : (
-            "Subscribe"
+            t("subscribe")
           )}
         </Button>
       </div>

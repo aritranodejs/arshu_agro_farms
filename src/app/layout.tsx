@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { DM_Sans, Playfair_Display } from "next/font/google";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { MotionProvider } from "@/components/providers/motion-provider";
-import { ThemeProvider } from "@/components/providers/theme-provider";
-import { JsonLd } from "@/components/seo/json-ld";
-import { WhatsAppFloat } from "@/components/shared/whatsapp-float";
-import { BackToTop } from "@/components/shared/back-to-top";
+import { DM_Sans, Noto_Sans_Bengali, Playfair_Display } from "next/font/google";
+import { getLocale } from "next-intl/server";
+import { ThemeScript } from "@/components/theme/theme-script";
 import { createMetadata } from "@/lib/seo";
-import { getOrganizationSchema, getWebsiteSchema } from "@/lib/schema";
 import "./globals.css";
 
 const dmSans = DM_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const notoBengali = Noto_Sans_Bengali({
+  variable: "--font-bengali",
+  subsets: ["bengali"],
   display: "swap",
 });
 
@@ -23,31 +23,30 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-export const metadata: Metadata = createMetadata({});
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return createMetadata({ locale });
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      className={`${dmSans.variable} ${notoBengali.variable} ${playfair.variable}`}
+    >
       <body
-        className={`${dmSans.variable} ${playfair.variable} min-h-screen font-sans antialiased`}
+        className="min-h-screen font-sans antialiased"
         suppressHydrationWarning
       >
-        <JsonLd data={[getOrganizationSchema(), getWebsiteSchema()]} />
-        <ThemeProvider>
-          <MotionProvider>
-            <Header />
-            <main className="min-h-screen" suppressHydrationWarning>
-              {children}
-            </main>
-            <Footer />
-            <WhatsAppFloat />
-            <BackToTop />
-          </MotionProvider>
-        </ThemeProvider>
+        <ThemeScript />
+        {children}
       </body>
     </html>
   );

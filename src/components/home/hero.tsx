@@ -1,16 +1,20 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { ArrowRight, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/data/site";
 import { images } from "@/data/images";
 
-export function Hero() {
+export async function Hero() {
+  const t = await getTranslations("home");
+  const tCommon = await getTranslations("common");
+  const tSite = await getTranslations("site");
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
       <Image
         src={images.hero}
-        alt="Arshu Agro Farms - Black Bengal goat pasture"
+        alt={t("heroImageAlt")}
         fill
         priority
         className="object-cover"
@@ -24,19 +28,19 @@ export function Hero() {
         </div>
 
         <p className="hero-fade-up hero-delay-1 text-sm font-semibold uppercase tracking-[0.2em] text-gold">
-          {siteConfig.name}
+          {tSite("name")}
         </p>
 
         <h1 className="hero-fade-up hero-delay-2 mx-auto mt-4 max-w-4xl font-heading text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-          Premium Black Bengal Goat Farming
+          {t("heroTitle")}
         </h1>
 
         <p className="hero-fade-up hero-delay-3 mx-auto mt-6 max-w-2xl text-lg text-white/90 sm:text-xl">
-          Raising healthy livestock through sustainable farming practices.
+          {t("heroSubtitle")}
         </p>
 
         <p className="hero-fade-in hero-delay-4 mt-2 text-gold italic">
-          {siteConfig.tagline}
+          {tSite("tagline")}
         </p>
 
         <div className="hero-fade-up hero-delay-5 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -46,7 +50,7 @@ export function Hero() {
             nativeButton={false}
             className="bg-gold px-8 text-forest hover:bg-gold-light"
           >
-            Explore Farm
+            {tCommon("exploreFarm")}
             <ArrowRight className="size-4" />
           </Button>
           <Button
@@ -56,7 +60,7 @@ export function Hero() {
             nativeButton={false}
             className="border-white/40 bg-white/10 px-8 text-white backdrop-blur-sm hover:bg-white/20"
           >
-            Contact Us
+            {tCommon("getInTouch")}
           </Button>
         </div>
       </div>

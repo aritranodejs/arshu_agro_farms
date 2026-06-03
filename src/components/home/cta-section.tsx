@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
 import { siteConfig } from "@/data/site";
@@ -10,6 +11,9 @@ import { Button } from "@/components/ui/button";
 import { Newsletter } from "@/components/shared/newsletter";
 
 export function CTASection() {
+  const t = useTranslations("home");
+  const tCommon = useTranslations("common");
+
   return (
     <section className="py-20 sm:py-28">
       <div className="container mx-auto px-4">
@@ -23,12 +27,9 @@ export function CTASection() {
           />
           <div className="relative">
             <h2 className="font-heading text-3xl font-bold sm:text-4xl">
-              Ready to Start Your Goat Farming Journey?
+              {t("ctaTitle")}
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-white/85">
-              Contact us today for premium Black Bengal goats, breeding stock, or
-              schedule a farm visit. We&apos;re here to help you succeed.
-            </p>
+            <p className="mx-auto mt-4 max-w-xl text-white/85">{t("ctaDesc")}</p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button
                 size="lg"
@@ -36,7 +37,7 @@ export function CTASection() {
                 nativeButton={false}
                 className="bg-gold text-forest hover:bg-gold-light"
               >
-                Get in Touch
+                {tCommon("getInTouch")}
                 <ArrowRight className="size-4" />
               </Button>
               <Button
@@ -53,9 +54,7 @@ export function CTASection() {
               </Button>
             </div>
             <div className="mx-auto mt-12 max-w-md">
-              <p className="mb-4 text-sm text-white/80">
-                Subscribe for farm updates and goat farming tips
-              </p>
+              <p className="mb-4 text-sm text-white/80">{t("ctaNewsletter")}</p>
               <Newsletter />
             </div>
           </div>

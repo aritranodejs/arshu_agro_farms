@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { viewFadeUp } from "@/lib/motion";
 import { Calendar, Clock } from "lucide-react";
@@ -21,6 +22,7 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ post, index = 0 }: BlogCardProps) {
+  const t = useTranslations("common");
   return (
     <motion.div
       {...viewFadeUp}
@@ -62,7 +64,7 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
           </CardContent>
           <CardFooter>
             <span className="text-sm font-medium text-forest dark:text-gold">
-              Read article →
+              {t("blogRead")} →
             </span>
           </CardFooter>
         </Link>

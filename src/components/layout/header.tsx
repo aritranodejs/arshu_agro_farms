@@ -1,21 +1,25 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Menu, Leaf } from "lucide-react";
 import { motion } from "framer-motion";
-import { navLinks, siteConfig } from "@/data/site";
+import { Link, usePathname } from "@/i18n/navigation";
+import { getNavLinks } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { LocaleSwitcher } from "@/components/shared/locale-switcher";
 
 export function Header() {
+  const t = useTranslations();
+  const tNav = useTranslations("nav");
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(!isHome);
   const [open, setOpen] = useState(false);
+  const navLinks = getNavLinks((key) => tNav(key));
 
   const isSolid = !isHome || scrolled;
 
@@ -60,7 +64,7 @@ export function Header() {
                 isSolid ? "text-foreground" : "text-white"
               )}
             >
-              {siteConfig.name}
+              {t("site.name")}
             </span>
             <span
               className={cn(
@@ -68,7 +72,7 @@ export function Header() {
                 isSolid ? "text-muted-foreground" : "text-white/80"
               )}
             >
-              {siteConfig.tagline}
+              {t("site.tagline")}
             </span>
           </div>
         </Link>
@@ -95,6 +99,11 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <LocaleSwitcher
+            className={cn(
+              !isSolid && "border-white/30 bg-white/10 text-white"
+            )}
+          />
           <ThemeToggle />
           <Button
             render={<Link href="/contact" />}
@@ -106,7 +115,7 @@ export function Header() {
                 : "bg-gold text-forest hover:bg-gold-light"
             )}
           >
-            Contact Us
+            {tNav("contactUs")}
           </Button>
 
           <Sheet open={open} onOpenChange={setOpen}>
@@ -120,13 +129,16 @@ export function Header() {
               }
             >
               <Menu className="size-5" />
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">{tNav("openMenu")}</span>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px]">
               <SheetTitle className="font-heading text-lg">
-                {siteConfig.name}
+                {t("site.name")}
               </SheetTitle>
-              <nav className="mt-8 flex flex-col gap-2">
+              <div className="mt-4">
+                <LocaleSwitcher />
+              </div>
+              <nav className="mt-6 flex flex-col gap-2">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
@@ -151,7 +163,7 @@ export function Header() {
                   nativeButton={false}
                   className="mt-4 bg-forest hover:bg-forest-light"
                 >
-                  Contact Us
+                  {tNav("contactUs")}
                 </Button>
               </nav>
             </SheetContent>

@@ -1,0 +1,308 @@
+{
+  "site": {
+    "name": "Arshu Agro Farms",
+    "tagline": "Raising Quality, Building Trust",
+    "description": "Premium Black Bengal goat farming through sustainable, ethical practices. Quality livestock, breeding stock, and trusted agricultural partnerships.",
+    "address": "Vill - Mayapur, Block - Budge Budge I, West Bengal, India - 743318",
+    "footerLine": "Premium Black Bengal Goat Farming · West Bengal, India",
+    "copyright": "All rights reserved."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "goats": "Our Goats",
+    "breeding": "Breeding",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "contactUs": "Contact Us",
+    "openMenu": "Open menu"
+  },
+  "locale": {
+    "label": "Language",
+    "en": "English",
+    "bn": "বাংলা"
+  },
+  "common": {
+    "exploreFarm": "Explore Farm",
+    "getInTouch": "Get in Touch",
+    "inquireNow": "Inquire Now",
+    "contact": "Contact",
+    "readMore": "Read article",
+    "backToBlog": "Back to Blog",
+    "byAuthor": "By {author}",
+    "articleNotFound": "Article Not Found",
+    "viewFullInventory": "View Full Inventory",
+    "viewFullGallery": "View Full Gallery",
+    "readAllReviews": "Read All Reviews",
+    "subscribe": "Subscribe",
+    "subscribed": "Subscribed!",
+    "emailPlaceholder": "Your email address",
+    "emailInvalid": "Please enter a valid email",
+    "backToTop": "Back to top",
+    "toggleTheme": "Toggle theme",
+    "whatsappAria": "Chat on WhatsApp",
+    "whatsappMessage": "Hello! I'm interested in Arshu Agro Farms goats.",
+    "whatsappInquiry": "Hello! I'm interested in {label} ({breed}, {age}) from Arshu Agro Farms.",
+    "goatImageAlt": "{label} — {breed} at Arshu Agro Farms",
+    "breed": "Black Bengal",
+    "healthExcellent": "Excellent",
+    "healthGood": "Good",
+    "vaccinatedFull": "Fully Vaccinated",
+    "galleryClose": "Close",
+    "galleryPrev": "Previous image",
+    "galleryNext": "Next image",
+    "blogRead": "Read article"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Get farming tips, new stock alerts, and farm updates."
+  },
+  "home": {
+    "heroTitle": "Premium Black Bengal Goat Farming",
+    "heroSubtitle": "Raising healthy livestock through sustainable farming practices.",
+    "heroImageAlt": "Arshu Agro Farms — Black Bengal goat pasture",
+    "whyLabel": "Why Us",
+    "whyTitle": "Why Choose Arshu Agro Farms",
+    "whyDesc": "Trusted by farmers and breeders across West Bengal for quality, transparency, and ethical livestock care.",
+    "livestockLabel": "Our Livestock",
+    "livestockTitle": "Featured Stock",
+    "livestockDesc": "Black Bengal goats from our Mayapur farm — raised with documented health care and ethical practices. Pricing discussed individually.",
+    "testimonialsLabel": "Testimonials",
+    "testimonialsTitle": "What Our Customers Say",
+    "galleryLabel": "Gallery",
+    "galleryTitle": "Life at Our Farm",
+    "ctaTitle": "Ready to Start Your Goat Farming Journey?",
+    "ctaDesc": "Contact us today for premium Black Bengal goats, breeding stock, or a guided farm visit in West Bengal.",
+    "ctaNewsletter": "Subscribe for farm updates and goat farming tips",
+    "faqLabel": "FAQ",
+    "faqTitle": "Frequently Asked Questions",
+    "faqDesc": "Everything you need to know about our goats, breeding program, and farm visits."
+  },
+  "stats": {
+    "goats": "Healthy Goats Raised",
+    "customers": "Happy Customers",
+    "experience": "Years of Farming Experience",
+    "ethical": "Ethical Farming Practices"
+  },
+  "whyChoose": {
+    "0": { "title": "Premium Black Bengal Breed", "description": "We specialize in authentic Black Bengal goats known for superior meat quality, adaptability, and breeding potential." },
+    "1": { "title": "Sustainable Practices", "description": "Our farm follows eco-friendly feeding, rotational grazing, and waste management for long-term soil and animal health." },
+    "2": { "title": "Complete Health Records", "description": "Every goat comes with documented vaccination history, deworming schedules, and veterinary check-up records." },
+    "3": { "title": "Expert Breeding Program", "description": "Selective genetics and welfare-first breeding standards ensure healthy offspring and reliable breeding stock." },
+    "4": { "title": "Transparent Pricing", "description": "Clear pricing, honest communication, and post-sale support so you invest with confidence." },
+    "5": { "title": "Farm Visits Welcome", "description": "Schedule a visit to see our facilities, meet our herd, and experience our farming practices firsthand." }
+  },
+  "faq": {
+    "0": { "question": "What breed of goats do you specialize in?", "answer": "We specialize in Black Bengal goats, prized for their adaptability to local climates, excellent meat quality, and strong breeding characteristics." },
+    "1": { "question": "Can I visit the farm before purchasing?", "answer": "Yes! We encourage farm visits by appointment. Contact us via phone, WhatsApp, or our contact form to schedule a convenient time." },
+    "2": { "question": "Are vaccination records provided with each goat?", "answer": "Absolutely. Every goat sold includes complete vaccination and health documentation verified by our farm veterinarian." },
+    "3": { "question": "Do you offer breeding stock?", "answer": "Yes, we maintain a selective breeding program with documented genetics. Premium bucks and does are available for serious breeders." },
+    "4": { "question": "What areas do you deliver to?", "answer": "We primarily serve West Bengal and neighboring states. Delivery arrangements can be discussed based on distance and herd size." },
+    "5": { "question": "Do you provide after-sale support?", "answer": "We offer feeding guidance, health management tips, and ongoing consultation to help your goats thrive after purchase." }
+  },
+  "meta": {
+    "home": { "title": "Home", "description": "Premium Black Bengal goat farming in West Bengal — quality livestock, breeding stock, and ethical farm practices." },
+    "about": { "title": "About Us", "description": "Learn about Arshu Agro Farms — our story, mission, sustainable Black Bengal goat farming, and vision for the future." },
+    "goats": { "title": "Our Goats", "description": "Browse Black Bengal goat stock from Arshu Agro Farms — documented health, vaccination records, and inquiry options." },
+    "breeding": { "title": "Breeding Program", "description": "Selective Black Bengal breeding program with documented genetics, welfare standards, and health management." },
+    "gallery": { "title": "Farm Gallery", "description": "Photos of our farm facilities, Black Bengal goats, and daily farming life at Arshu Agro Farms." },
+    "blog": { "title": "Blog", "description": "Goat farming guides, feeding tips, health management, and breeding articles from Arshu Agro Farms." },
+    "testimonials": { "title": "Testimonials", "description": "Reviews from farmers and customers who trust Arshu Agro Farms for quality Black Bengal goats." },
+    "contact": { "title": "Contact Us", "description": "Contact Arshu Agro Farms for goat inquiries, farm visits, breeding stock, and partnerships in West Bengal." }
+  },
+  "pages": {
+    "about": {
+      "heroTitle": "About Arshu Agro Farms",
+      "heroDesc": "Building trust through quality livestock and sustainable farming since day one.",
+      "storyLabel": "Our Story",
+      "storyTitle": "Rooted in Passion, Growing with Purpose",
+      "storyP1": "Arshu Agro Farms began with a simple vision: to raise the finest Black Bengal goats while honoring the land and animals that sustain us. What started as a small family operation in West Bengal has grown into a trusted name among farmers, breeders, and agricultural entrepreneurs across the region.",
+      "storyP2": "Our founder recognized the growing demand for quality livestock and the gap between commercial farming and ethical practices. Today, we bridge that gap — delivering healthy goats with complete health documentation, expert guidance, and a commitment to sustainable agriculture.",
+      "storyP3": "Every goat on our farm is treated with care, tracked with meticulous records, and raised in conditions we'd be proud to show anyone. That transparency is the foundation of everything we do.",
+      "farmImageAlt": "Arshu Agro Farms herd",
+      "missionTitle": "Our Mission",
+      "missionDesc": "To provide premium Black Bengal goats and breeding stock through ethical, sustainable practices that benefit farmers, animals, and the environment.",
+      "visionTitle": "Our Vision",
+      "visionDesc": "To become West Bengal's most trusted name in goat farming — known for quality, transparency, and innovation in livestock agriculture.",
+      "valuesLabel": "Core Values",
+      "valuesTitle": "What Guides Us",
+      "sustainLabel": "Sustainability",
+      "sustainTitle": "Sustainable Farming Practices",
+      "sustainDesc": "We believe responsible farming protects our land for future generations while delivering superior livestock today.",
+      "futureLabel": "Growth",
+      "futureTitle": "Future Plans",
+      "futureDesc": "We're investing in the future of ethical goat farming across West Bengal and beyond."
+    },
+    "goats": {
+      "heroTitle": "Our Goats",
+      "heroDesc": "Premium Black Bengal livestock from our Mayapur farm — documented health and vaccination records.",
+      "inventoryLabel": "Inventory",
+      "inventoryTitle": "Current Stock",
+      "inventoryDesc": "Choose a category and inquire via WhatsApp or our contact form. Pricing is discussed individually based on age, weight, and purpose."
+    },
+    "breeding": {
+      "heroTitle": "Breeding Program",
+      "heroDesc": "Selective genetics, welfare-first standards, and documented health for serious breeders.",
+      "standardsLabel": "Standards",
+      "standardsTitle": "Breeding Standards",
+      "standardsDesc": "Every breeding decision is made with long-term herd quality and animal welfare in mind.",
+      "geneticsLabel": "Genetics",
+      "geneticsTitle": "Genetics & Lineage",
+      "welfareLabel": "Welfare",
+      "healthDesc": "A systematic approach from breeding through kidding and beyond.",
+      "welfareTitle": "Animal Welfare Practices",
+      "welfareP1": "Our breeding program prioritizes animal welfare above short-term gains. Bucks and does are housed in clean, ventilated shelters with adequate space, fresh water, and balanced nutrition year-round.",
+      "welfareP2": "We avoid overbreeding, provide recovery periods between kidding cycles, and monitor body condition scores regularly. Stress-free handling during health checks and transport is standard practice.",
+      "healthLabel": "Healthcare",
+      "healthTitle": "Health Management Process"
+    },
+    "gallery": {
+      "heroTitle": "Farm Gallery",
+      "heroDesc": "A glimpse into daily life, our facilities, and the Black Bengal herd at Mayapur.",
+      "filterAll": "All",
+      "filterGoats": "Goats",
+      "filterFacilities": "Facilities",
+      "filterDaily": "Daily Life"
+    },
+    "blog": {
+      "heroTitle": "Farm Blog",
+      "heroDesc": "Expert guides on goat farming, health, feeding, and breeding.",
+      "resourcesLabel": "Resources",
+      "resourcesTitle": "Farming Knowledge Hub",
+      "searchPlaceholder": "Search articles...",
+      "filterAll": "All",
+      "empty": "No articles match your search.",
+      "categories": {
+        "Feeding": "Feeding",
+        "Health": "Health",
+        "Breeding": "Breeding",
+        "Guides": "Guides"
+      }
+    },
+    "testimonials": {
+      "heroTitle": "Customer Testimonials",
+      "heroDesc": "Real stories from farmers and buyers across West Bengal.",
+      "reviewsLabel": "Reviews",
+      "reviewsTitle": "Success Stories"
+    },
+    "contact": {
+      "heroTitle": "Contact Us",
+      "heroDesc": "We'd love to hear from you. Reach out for goat inquiries, farm visits, or partnerships.",
+      "formTitle": "Send a Message",
+      "infoTitle": "Contact Information",
+      "whatsappTitle": "WhatsApp Chat",
+      "whatsappDesc": "Fastest way to reach us for stock inquiries and farm visits.",
+      "followTitle": "Follow Us",
+      "mapTitle": "Arshu Agro Farms Location"
+    }
+  },
+  "values": {
+    "0": { "title": "Integrity", "description": "Honest dealings and transparent farm practices in every customer interaction." },
+    "1": { "title": "Animal Welfare", "description": "Healthy, stress-free environments with proper nutrition and veterinary care." },
+    "2": { "title": "Quality", "description": "No compromises on breed standards, health, or customer satisfaction." },
+    "3": { "title": "Sustainability", "description": "Farming methods that protect land, water, and future generations." }
+  },
+  "practices": {
+    "0": "Rotational grazing to preserve pasture health",
+    "1": "Organic and locally sourced feed supplementation",
+    "2": "Rainwater harvesting and efficient water management",
+    "3": "Veterinary-led preventive healthcare programs",
+    "4": "Humane handling and stress-free environments",
+    "5": "Waste recycling for natural fertilizer production"
+  },
+  "futurePlans": {
+    "0": "Expand herd capacity with premium breeding lines",
+    "1": "Launch organic goat milk and cheese products",
+    "2": "Develop farm tourism and educational workshops",
+    "3": "Integrate digital inventory and health tracking (admin dashboard)",
+    "4": "Partner with local cooperatives and export markets"
+  },
+  "breeding": {
+    "standards": {
+      "0": { "title": "Breed Purity", "description": "Authentic Black Bengal lineage maintained through careful selection and record-keeping." },
+      "1": { "title": "Selective Pairing", "description": "Bucks and does matched for complementary traits — size, health history, and temperament." },
+      "2": { "title": "Health Screening", "description": "Pre-breeding veterinary checks, deworming, and vaccination verification for every animal." },
+      "3": { "title": "Welfare First", "description": "Adequate rest between breeding cycles and nutrition plans that support mother and kid health." }
+    },
+    "genetics": {
+      "0": "Documented pedigree records for breeding stock",
+      "1": "Selection for adaptability to West Bengal climate",
+      "2": "Focus on twinning rates and kid survival",
+      "3": "Regular weight and growth tracking from birth",
+      "4": "Culling only for health — never for minor cosmetic traits"
+    },
+    "healthSteps": {
+      "0": { "title": "Daily observation", "description": "Morning and evening checks for appetite, mobility, and coat condition." },
+      "1": { "title": "Scheduled vaccination", "description": "PPR, FMD, and tetanus per veterinary calendar." },
+      "2": { "title": "Deworming cycles", "description": "Seasonal deworming adjusted for monsoon and grazing patterns." },
+      "3": { "title": "Nutrition plans", "description": "Green fodder, concentrates, and mineral supplements by life stage." },
+      "4": { "title": "Isolation protocol", "description": "New arrivals quarantined before joining the main herd." },
+      "5": { "title": "Record keeping", "description": "Digital-ready logs for weight, treatments, and breeding events." }
+    }
+  },
+  "form": {
+    "thankYou": "Thank You!",
+    "thankYouDesc": "We've received your inquiry and will respond within 24 hours.",
+    "name": "Full Name",
+    "namePlaceholder": "Your name",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+91 ...",
+    "email": "Email Address",
+    "emailPlaceholder": "you@email.com",
+    "subject": "Subject",
+    "subjectPlaceholder": "Select inquiry type",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your requirements...",
+    "send": "Send Message",
+    "errors": {
+      "name": "Name is required",
+      "email": "Valid email required",
+      "phone": "Valid phone required",
+      "subject": "Please select a subject",
+      "message": "Message must be at least 10 characters"
+    },
+    "subjects": {
+      "purchase": "Goat Purchase",
+      "breeding": "Breeding Stock",
+      "visit": "Farm Visit",
+      "bulk": "Bulk Order",
+      "other": "Other"
+    }
+  },
+  "goats": {
+    "0": { "label": "Premium Breeding Buck", "description": "Select breeding buck with strong frame, active temperament, and documented health records." },
+    "1": { "label": "Adult Doe — Breeding Quality", "description": "Healthy adult doe suited for breeding programs or quality meat production." },
+    "2": { "label": "Young Buck", "description": "Growing male with good conformation and steady weight gain on farm ration." },
+    "3": { "label": "Kid (8–12 months)", "description": "Young stock raised on pasture and balanced feed under daily farm supervision." },
+    "4": { "label": "Mature Breeding Buck", "description": "Proven mature buck for breeders seeking established livestock with farm records." },
+    "5": { "label": "Adult Doe", "description": "" },
+    "6": { "label": "Breeding Pair Candidate", "description": "Well-maintained stock from our Mayapur farm — ideal for expanding a small herd." },
+    "7": { "label": "Farm-Raised Doe", "description": "Docile, farm-raised doe with consistent feeding and routine veterinary checks." }
+  },
+  "galleryAlts": {
+    "0": "Goats at the farm near wooden shelter",
+    "1": "Black Bengal goat in pasture",
+    "2": "Farm yard with goats and barn",
+    "3": "Young Black Bengal kids on the farm",
+    "4": "Goat at pasture fencing",
+    "5": "Goat portrait — breeding stock quality",
+    "6": "Goat in farm enclosure",
+    "7": "Goat grazing outdoors",
+    "8": "Herd on the farm grounds",
+    "9": "Goats at the farm fence line",
+    "10": "Farm-raised goat outdoors",
+    "11": "Young goats raised on the farm"
+  },
+  "testimonials": {
+    "0": { "content": "The goats I purchased were healthy and exactly as described. Vaccination records were complete and the team guided me on feeding after delivery.", "role": "Livestock Buyer", "location": "South 24 Parganas" },
+    "1": { "content": "We visited the farm before buying breeding stock. Clean shelters, well-fed animals, and honest pricing. Highly recommend for serious breeders.", "role": "Goat Farmer", "location": "Howrah" },
+    "2": { "content": "Quality Black Bengal bucks with good size and temperament. WhatsApp support after purchase helped us manage our first kidding season.", "role": "Breeder", "location": "Nadia" },
+    "3": { "content": "Transparent dealings and healthy kids. Our cooperative placed a bulk order and Arshu Agro Farms delivered on time with proper documentation.", "role": "Cooperative Member", "location": "Budge Budge" },
+    "4": { "content": "Started my small farm with five goats from here. All are thriving. The farm visit convinced me they truly care about animal welfare.", "role": "New Farmer", "location": "Kolkata" },
+    "5": { "content": "Professional team, fair prices, and goats adapted well to our local climate. Will buy again for expansion next season.", "role": "Entrepreneur", "location": "Hooghly" }
+  }
+}
