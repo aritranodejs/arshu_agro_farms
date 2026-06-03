@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arshu Agro Farms
+
+Premium Black Bengal goat farming website built with Next.js, TypeScript, Tailwind CSS, Framer Motion, and ShadCN UI.
+
+## Tech Stack
+
+- **Next.js 16** (App Router)
+- **React 19** + **TypeScript**
+- **Tailwind CSS v4**
+- **ShadCN UI** (Base UI)
+- **Framer Motion**
+- **React Hook Form** + **Zod**
+- **next-themes** (dark mode)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Create `.env.local`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Pages
 
-## Deploy on Vercel
+| Route | Description |
+|-------|-------------|
+| `/` | Home — hero, stats, featured goats, testimonials, gallery preview, CTA, FAQ |
+| `/about` | Story, mission, vision, values, sustainability, growth plans |
+| `/goats` | Goat inventory cards with inquiry buttons |
+| `/breeding` | Breeding program, genetics, welfare, health process |
+| `/gallery` | Masonry gallery with lightbox |
+| `/blog` | Articles with search and category filters |
+| `/blog/[slug]` | Individual blog posts |
+| `/testimonials` | Customer reviews |
+| `/contact` | Form, contact info, map, social links |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Admin-Ready Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `src/admin/README.md` for planned dashboard modules (inventory, vaccinations, breeding, sales, inquiries).
+
+## Features
+
+- Sticky navigation + mobile menu
+- Dark mode
+- Animated statistics counters
+- Floating WhatsApp button
+- Back-to-top button
+- SEO metadata, Open Graph, sitemap, robots.txt
+- JSON-LD schema (Organization, WebSite, FAQ, Article)
+
+## License
+
+Private — Arshu Agro Farms
+# arshu_agro_farms
